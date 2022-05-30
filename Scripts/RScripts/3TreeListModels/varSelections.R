@@ -1,6 +1,5 @@
-varSelection1<-function (x, y, method = "addVars", yaiMethod = "msn", wts = NULL, 
-    nboot = 20, trace = FALSE, useParallel = if (.Platform$OS.type == 
-        "windows") FALSE else TRUE, ...) {
+varSelection1 <- function (x, y, method = "addVars", yaiMethod = "msn", wts = NULL, 
+    nboot = 20, trace = FALSE, useParallel = if (.Platform$OS.type == "windows"){FALSE} else {TRUE}, ...) {
     if (missing(x)) 
         stop("x must be specified.")
     if (missing(y)) 
@@ -9,12 +8,13 @@ varSelection1<-function (x, y, method = "addVars", yaiMethod = "msn", wts = NULL
     if (!(method %in% okMethods)) 
         stop("method=\"", method, "\" must be one of: \"", paste0(okMethods, 
             collapse = "\", \""), "\"")
+
     if (is.null(wts)) 
         wts <- rep(1, ncol(y))
+
     if (useParallel && .Platform$OS.type != "Windows" && requireNamespace("parallel")) {
         myapply <- parallel::mclapply
-    }
-    else {
+    }   else {
         if (useParallel) 
             warning("package parallel was not loaded and is not being used")
         myapply <- lapply
@@ -359,8 +359,7 @@ Jaccard<-function(ob,pr){
 }
 
 grmsd2<-function (..., ancillaryData = NULL, vars = NULL, wts = NULL, 
-		rtnVectors = FALSE) 
-{
+		rtnVectors = FALSE) {
 	if (missing(...)) 
 		stop("... required")
 	args <- list(...)
@@ -840,15 +839,3 @@ Iindex<-function(ob,pr){
 	
 }
 
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
